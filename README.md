@@ -2,7 +2,7 @@
 
 An AI-powered B2B/SaaS sales research workflow that researches a company, identifies potential business opportunities, qualifies the lead, prepares a personalized outreach email draft, and records the research in Google Sheets.
 
-> **Project:** AI Real-World Use Case Lab — Project 1  
+> **Project:** AI Real-World Use Case Lab  
 > **Domain:** B2B / SaaS  
 > **Workflow status:** Exported workflow is currently disabled/paused. Review configuration and test before running.
 
