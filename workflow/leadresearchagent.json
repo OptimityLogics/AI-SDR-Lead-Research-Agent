@@ -1,0 +1,679 @@
+{
+  "id": 382858228,
+  "title": "AI SDR / Lead Research Agent",
+  "status": "off",
+  "nodes": {
+    "382858228": {
+      "id": 382858228,
+      "account_id": 28817829,
+      "customuser_id": 28984783,
+      "paused": true,
+      "type_of": "read",
+      "params": {},
+      "meta": {
+        "$editor": {
+          "has_automatic_issues": false
+        },
+        "parammap": {}
+      },
+      "triple_stores": {
+        "copied_from": null,
+        "created_by": null,
+        "polling_interval_override": 0,
+        "block_and_release_limit_override": 0,
+        "spread_tasks": 1
+      },
+      "folders": "01a11b51-50c7-fa2d-3391-f1f73946de11",
+      "parent_id": null,
+      "root_id": null,
+      "action": "hook_v2",
+      "selected_api": "WebHookCLIAPI@1.1.1",
+      "title": "AI SDR / Lead Research Agent",
+      "authentication_id": null,
+      "created_at": "2026-10-08T13:03:54+00:00",
+      "last_changed": "2026-10-09T05:44:55+00:00"
+    },
+    "382858229": {
+      "id": 382858229,
+      "account_id": 28817829,
+      "customuser_id": 28984783,
+      "paused": true,
+      "type_of": "write",
+      "params": {
+        "api_branch_name": "",
+        "authentication_id": "0",
+        "model_id": "standard/auto",
+        "provider_id": "",
+        "instructions": "You are the Company Research Agent in a B2B/SaaS AI SDR workflow. Research the provided company website and publicly available information. Identify company name, description, industry, products/services, target customers, business model, geographic focus, size if public, business operations, customer-facing processes, potential operational challenges, AI/automation opportunities, key facts, and observations. Do not invent facts, assume problems without evidence, create a sales pitch, or write an email. Separate facts from reasonable observations. Return only valid JSON with keys: company_name, website, industry, company_description, products_services[], target_customers[], business_model, geographic_focus, company_size, business_operations[], customer_facing_processes[], potential_operational_challenges[], potential_ai_automation_opportunities[], key_facts[], research_observations[].",
+        "inputFields": {
+          "company_url": "{{382858228__company_url}}"
+        },
+        "outputFields": [
+          {
+            "key": "company_name",
+            "label": "Company Name",
+            "name": "company_name"
+          },
+          {
+            "key": "website",
+            "label": "Website",
+            "name": "website"
+          },
+          {
+            "key": "industry",
+            "label": "Industry",
+            "name": "industry"
+          },
+          {
+            "key": "company_description",
+            "label": "Company Description",
+            "name": "company_description"
+          },
+          {
+            "key": "products_services",
+            "label": "Products Services",
+            "name": "products_services"
+          },
+          {
+            "key": "target_customers",
+            "label": "Target Customers",
+            "name": "target_customers"
+          },
+          {
+            "key": "business_model",
+            "label": "Business Model",
+            "name": "business_model"
+          },
+          {
+            "key": "geographic_focus",
+            "label": "Geographic Focus",
+            "name": "geographic_focus"
+          },
+          {
+            "key": "company_size",
+            "label": "Company Size",
+            "name": "company_size"
+          },
+          {
+            "key": "business_operations",
+            "label": "Business Operations",
+            "name": "business_operations"
+          },
+          {
+            "key": "customer_facing_processes",
+            "label": "Customer Facing Processes",
+            "name": "customer_facing_processes"
+          },
+          {
+            "key": "potential_operational_challenges",
+            "label": "Potential Operational Challenges",
+            "name": "potential_operational_challenges"
+          },
+          {
+            "key": "potential_ai_automation_opportunities",
+            "label": "Potential Ai Automation Opportunities",
+            "name": "potential_ai_automation_opportunities"
+          },
+          {
+            "key": "key_facts",
+            "label": "Key Facts",
+            "name": "key_facts"
+          },
+          {
+            "key": "research_observations",
+            "label": "Research Observations",
+            "name": "research_observations"
+          }
+        ],
+        "isOutputArray": false,
+        "includeWorkflowData": true
+      },
+      "meta": {
+        "$editor": {
+          "has_automatic_issues": false,
+          "$prompt_strength": {
+            "fingerprint": 7733122977722981,
+            "result": {
+              "status": "scored",
+              "criteria": {
+                "task": true,
+                "data": true,
+                "output": true,
+                "rules": true
+              },
+              "criteria_met": 4,
+              "strength": "strong"
+            }
+          }
+        },
+        "parammap": {},
+        "stepTitle": "Company Research"
+      },
+      "triple_stores": {
+        "copied_from": null,
+        "created_by": null,
+        "polling_interval_override": 0,
+        "block_and_release_limit_override": 0,
+        "spread_tasks": 1
+      },
+      "folders": null,
+      "parent_id": 382858228,
+      "root_id": 382858228,
+      "action": "get_completion",
+      "selected_api": "AICLIAPI@4.0.31",
+      "title": null,
+      "authentication_id": null,
+      "created_at": "2026-10-08T13:03:54+00:00",
+      "last_changed": "2026-10-14T20:12:58+00:00"
+    },
+    "382858548": {
+      "id": 382858548,
+      "account_id": 28817829,
+      "customuser_id": 28984783,
+      "paused": true,
+      "type_of": "write",
+      "params": {
+        "authentication_id": "0",
+        "model_id": "standard/auto",
+        "provider_id": "",
+        "instructions": "You are the Company Analysis Agent for a B2B/SaaS AI SDR system. Analyze company research across core business, revenue-generating activities, customer-facing activities, workflows, repetitive/manual and information-heavy processes, delays, human effort at scale, AI automation opportunities, and potential impact. Do not invent internal information; distinguish inference from fact; avoid generic claims; do not write an email. Select the strongest opportunity. Return only valid JSON with business_summary, core_business_activities[], customer_facing_activities[], manual_or_repetitive_processes[], information_heavy_processes[], potential_business_problems[], ai_automation_opportunities[], highest_value_opportunity, opportunity_reason, supporting_evidence[].",
+        "inputFields": {
+          "Company Research Output": "Company Name: {{382858229__company_name}}\nIndustry: {{382858229__industry}}\nDescription: {{382858229__company_description}}\nProducts/Services: {{382858229__products_services}}\nTarget Customers: {{382858229__target_customers}}\nBusiness Model: {{382858229__business_model}}\nGeographic Focus: {{382858229__geographic_focus}}\nCompany Size: {{382858229__company_size}}\nBusiness Operations: {{382858229__business_operations}}\nCustomer-Facing Processes: {{382858229__customer_facing_processes}}\nOperational Challenges: {{382858229__potential_operational_challenges}}\nAI Automation Opportunities: {{382858229__potential_ai_automation_opportunities}}\nKey Facts: {{382858229__key_facts}}\nResearch Observations: {{382858229__research_observations}}"
+        },
+        "outputFields": [
+          {
+            "key": "business_summary",
+            "label": "Business Summary",
+            "name": "business_summary"
+          },
+          {
+            "key": "core_business_activities",
+            "label": "Core Business Activities",
+            "name": "core_business_activities"
+          },
+          {
+            "key": "customer_facing_activities",
+            "label": "Customer Facing Activities",
+            "name": "customer_facing_activities"
+          },
+          {
+            "key": "manual_or_repetitive_processes",
+            "label": "Manual Or Repetitive Processes",
+            "name": "manual_or_repetitive_processes"
+          },
+          {
+            "key": "information_heavy_processes",
+            "label": "Information Heavy Processes",
+            "name": "information_heavy_processes"
+          },
+          {
+            "key": "potential_business_problems",
+            "label": "Potential Business Problems",
+            "name": "potential_business_problems"
+          },
+          {
+            "key": "ai_automation_opportunities",
+            "label": "Ai Automation Opportunities",
+            "name": "ai_automation_opportunities"
+          },
+          {
+            "key": "highest_value_opportunity",
+            "label": "Highest Value Opportunity",
+            "name": "highest_value_opportunity"
+          },
+          {
+            "key": "opportunity_reason",
+            "label": "Opportunity Reason",
+            "name": "opportunity_reason"
+          },
+          {
+            "key": "supporting_evidence",
+            "label": "Supporting Evidence",
+            "name": "supporting_evidence"
+          }
+        ],
+        "isOutputArray": false,
+        "includeWorkflowData": true
+      },
+      "meta": {
+        "$editor": {
+          "added_step_correlation_id": "e25613a1-4eb5-4023-8f1e-1cc167152155",
+          "has_automatic_issues": false
+        },
+        "stepTitle": "Company Analysis"
+      },
+      "triple_stores": {
+        "copied_from": null,
+        "created_by": null,
+        "polling_interval_override": 0,
+        "block_and_release_limit_override": 0,
+        "spread_tasks": 1
+      },
+      "folders": null,
+      "parent_id": 382969684,
+      "root_id": 382858228,
+      "action": "get_completion",
+      "selected_api": "AICLIAPI@4.0.31",
+      "title": null,
+      "authentication_id": null,
+      "created_at": "2026-10-08T13:06:18+00:00",
+      "last_changed": "2026-10-14T20:12:58+00:00"
+    },
+    "382858691": {
+      "id": 382858691,
+      "account_id": 28817829,
+      "customuser_id": 28984783,
+      "paused": true,
+      "type_of": "write",
+      "params": {
+        "authentication_id": "0",
+        "model_id": "standard/auto",
+        "provider_id": "",
+        "instructions": "You are the Problem Identification Agent. Identify company-relevant B2B/SaaS pain points. For each, explain the problem, why it matters, business impact, evidence/reasoning, and confidence. Do not fabricate internal information or claim a problem exists without evidence. Prioritize company-specific, measurable, realistically software/AI-solvable problems. Select one primary pain point. Return only valid JSON with pain_points[] objects {problem, why_it_matters, business_impact, evidence, confidence}, primary_pain_point, primary_pain_point_reason, primary_pain_point_evidence.",
+        "inputFields": {
+          "Company Research Output": "{{382858229__output}}",
+          "Company Analysis Output": "{{382858548__output}}"
+        },
+        "outputFields": [
+          {
+            "key": "pain_points",
+            "label": "Pain Points",
+            "name": "pain_points"
+          },
+          {
+            "key": "primary_pain_point",
+            "label": "Primary Pain Point",
+            "name": "primary_pain_point"
+          },
+          {
+            "key": "primary_pain_point_reason",
+            "label": "Primary Pain Point Reason",
+            "name": "primary_pain_point_reason"
+          },
+          {
+            "key": "primary_pain_point_evidence",
+            "label": "Primary Pain Point Evidence",
+            "name": "primary_pain_point_evidence"
+          }
+        ],
+        "isOutputArray": false,
+        "includeWorkflowData": true
+      },
+      "meta": {
+        "$editor": {
+          "added_step_correlation_id": "f52d42e5-7279-442c-89c8-ac516ecf9bd4",
+          "has_automatic_issues": true
+        },
+        "stepTitle": "Problem Identification"
+      },
+      "triple_stores": {
+        "copied_from": null,
+        "created_by": null,
+        "polling_interval_override": 0,
+        "block_and_release_limit_override": 0,
+        "spread_tasks": 1
+      },
+      "folders": null,
+      "parent_id": 382858548,
+      "root_id": 382858228,
+      "action": "get_completion",
+      "selected_api": "AICLIAPI@4.0.31",
+      "title": null,
+      "authentication_id": null,
+      "created_at": "2026-10-08T13:07:56+00:00",
+      "last_changed": "2026-10-14T20:12:58+00:00"
+    },
+    "382858783": {
+      "id": 382858783,
+      "account_id": 28817829,
+      "customuser_id": 28984783,
+      "paused": true,
+      "type_of": "write",
+      "params": {
+        "authentication_id": "0",
+        "model_id": "standard/auto",
+        "provider_id": "",
+        "instructions": "You are the Lead Qualification Agent. Score the prospect on business relevance, problem relevance, potential business value, and AI/SaaS opportunity, each out of 25 for a total of 100. Qualification bands: 80–100 Strong Fit, 60–79 Moderate Fit, 0–59 Low Fit. Do not inflate scores or invent facts; explain the score and recommended sales angle. Return only valid JSON with business_relevance_score, problem_relevance_score, potential_business_value_score, ai_saas_opportunity_score, total_score, qualification, qualification_reason, recommended_sales_angle.",
+        "inputFields": {
+          "Company Research Output": "{{382858229__output}}",
+          "Company Analysis Output": "{{382858548__output}}",
+          "Primary Pain Point Output": "{{382858691__output}}"
+        },
+        "outputFields": [
+          {
+            "key": "business_relevance_score",
+            "label": "Business Relevance Score",
+            "name": "business_relevance_score"
+          },
+          {
+            "key": "problem_relevance_score",
+            "label": "Problem Relevance Score",
+            "name": "problem_relevance_score"
+          },
+          {
+            "key": "potential_business_value_score",
+            "label": "Potential Business Value Score",
+            "name": "potential_business_value_score"
+          },
+          {
+            "key": "ai_saas_opportunity_score",
+            "label": "Ai Saas Opportunity Score",
+            "name": "ai_saas_opportunity_score"
+          },
+          {
+            "key": "total_score",
+            "label": "Total Score",
+            "name": "total_score"
+          },
+          {
+            "key": "qualification",
+            "label": "Qualification",
+            "name": "qualification"
+          },
+          {
+            "key": "qualification_reason",
+            "label": "Qualification Reason",
+            "name": "qualification_reason"
+          },
+          {
+            "key": "recommended_sales_angle",
+            "label": "Recommended Sales Angle",
+            "name": "recommended_sales_angle"
+          }
+        ],
+        "isOutputArray": false,
+        "includeWorkflowData": true
+      },
+      "meta": {
+        "$editor": {
+          "added_step_correlation_id": "d381d99f-3375-4329-8635-24170c55401f",
+          "has_automatic_issues": true
+        },
+        "stepTitle": "Lead Qualification"
+      },
+      "triple_stores": {
+        "copied_from": null,
+        "created_by": null,
+        "polling_interval_override": 0,
+        "block_and_release_limit_override": 0,
+        "spread_tasks": 1
+      },
+      "folders": null,
+      "parent_id": 382858691,
+      "root_id": 382858228,
+      "action": "get_completion",
+      "selected_api": "AICLIAPI@4.0.31",
+      "title": null,
+      "authentication_id": null,
+      "created_at": "2026-10-08T13:08:47+00:00",
+      "last_changed": "2026-10-14T20:12:58+00:00"
+    },
+    "382858862": {
+      "id": 382858862,
+      "account_id": 28817829,
+      "customuser_id": 28984783,
+      "paused": true,
+      "type_of": "write",
+      "params": {
+        "authentication_id": "0",
+        "model_id": "standard/auto",
+        "provider_id": "",
+        "instructions": "You are the Personalization Agent. Create a specific outbound-email personalization strategy: company-specific opening observation, problem hypothesis, why it matters, potential AI/SaaS solution connection, concise value proposition, reason for contact, and one low-friction CTA. Never invent facts, claim private knowledge, use generic compliments, or exaggerate. Return only valid JSON with opening_observation, problem_hypothesis, why_it_matters, solution_connection, value_proposition, reason_for_contact, call_to_action.",
+        "inputFields": {
+          "Company Research Output": "{{382858229__output}}",
+          "Company Analysis Output": "{{382858548__output}}",
+          "Primary Pain Point Output": "{{382858691__output}}",
+          "Lead Qualification Output": "{{382858783__output}}"
+        },
+        "outputFields": [
+          {
+            "key": "opening_observation",
+            "label": "Opening Observation",
+            "name": "opening_observation"
+          },
+          {
+            "key": "problem_hypothesis",
+            "label": "Problem Hypothesis",
+            "name": "problem_hypothesis"
+          },
+          {
+            "key": "why_it_matters",
+            "label": "Why It Matters",
+            "name": "why_it_matters"
+          },
+          {
+            "key": "solution_connection",
+            "label": "Solution Connection",
+            "name": "solution_connection"
+          },
+          {
+            "key": "value_proposition",
+            "label": "Value Proposition",
+            "name": "value_proposition"
+          },
+          {
+            "key": "reason_for_contact",
+            "label": "Reason For Contact",
+            "name": "reason_for_contact"
+          },
+          {
+            "key": "call_to_action",
+            "label": "Call To Action",
+            "name": "call_to_action"
+          }
+        ],
+        "isOutputArray": false,
+        "includeWorkflowData": true
+      },
+      "meta": {
+        "$editor": {
+          "added_step_correlation_id": "a5aa02ec-14d7-4d5c-82d1-f84a400b7902",
+          "has_automatic_issues": false
+        },
+        "stepTitle": "Personalization"
+      },
+      "triple_stores": {
+        "copied_from": null,
+        "created_by": null,
+        "polling_interval_override": 0,
+        "spread_tasks": 1
+      },
+      "folders": null,
+      "parent_id": 382858783,
+      "root_id": 382858228,
+      "action": "get_completion",
+      "selected_api": "AICLIAPI@4.0.31",
+      "title": null,
+      "authentication_id": null,
+      "created_at": "2026-10-08T13:09:35+00:00",
+      "last_changed": "2026-10-14T20:12:58+00:00"
+    },
+    "382858970": {
+      "id": 382858970,
+      "account_id": 28817829,
+      "customuser_id": 28984783,
+      "paused": true,
+      "type_of": "write",
+      "params": {
+        "authentication_id": "0",
+        "model_id": "standard/auto",
+        "provider_id": "",
+        "instructions": "You are an expert B2B SaaS outbound email writer. Draft a concise, company-specific, professional and conversational cold email based on research, pain point, qualification, and personalization. Include one relevant observation, a carefully worded problem hypothesis, potential solution value, one low-friction CTA, and professional sign-off. No emojis, fake urgency, exaggeration, unsupported claims, multiple CTAs, or AI-generated disclosure. Draft only; never send. Return only valid JSON with subject, email_body, cta.",
+        "inputFields": {
+          "Company Research Output": "{{382858229__output}}",
+          "Primary Pain Point Output": "{{382858691__output}}",
+          "Lead Qualification Output": "{{382858783__output}}",
+          "Personalization Output": "{{382858862__output}}"
+        },
+        "outputFields": [
+          {
+            "key": "subject",
+            "label": "Subject",
+            "name": "subject"
+          },
+          {
+            "key": "email_body",
+            "label": "Email Body",
+            "name": "email_body"
+          },
+          {
+            "key": "cta",
+            "label": "Cta",
+            "name": "cta"
+          }
+        ],
+        "isOutputArray": false,
+        "includeWorkflowData": true
+      },
+      "meta": {
+        "$editor": {
+          "has_automatic_issues": false
+        },
+        "parammap": {},
+        "stepTitle": "Email Generator"
+      },
+      "triple_stores": {
+        "copied_from": null,
+        "created_by": null,
+        "polling_interval_override": 0,
+        "block_and_release_limit_override": 0,
+        "spread_tasks": 1
+      },
+      "folders": null,
+      "parent_id": 382858862,
+      "root_id": 382858228,
+      "action": "get_completion",
+      "selected_api": "AICLIAPI@4.0.31",
+      "title": null,
+      "authentication_id": null,
+      "created_at": "2026-10-08T13:10:25+00:00",
+      "last_changed": "2026-10-14T20:12:58+00:00"
+    },
+    "382859547": {
+      "id": 382859547,
+      "account_id": 28817829,
+      "customuser_id": 28984783,
+      "paused": true,
+      "type_of": "write",
+      "params": {
+        "timezone": false,
+        "drive": "",
+        "spreadsheet": "1QBq4XCoj8A6ShNbjFlfazn8KIlq6lfWTuKV6dcrxvnY",
+        "worksheet": "0",
+        "COL$A": "{{382858228__company_url}}",
+        "COL$B": "{{382858229__company_name}}",
+        "COL$C": "{{382858229__industry}}",
+        "COL$D": "{{382858229__company_description}}",
+        "COL$E": "{{382858229__products_services}}",
+        "COL$F": "{{382858229__target_customers}}",
+        "COL$G": "{{382858229__business_model}}",
+        "COL$H": "{{382858229__geographic_focus}}",
+        "COL$I": "{{382858229__company_size}}",
+        "COL$J": "{{382858229__business_operations}}",
+        "COL$K": "{{382858229__potential_operational_challenges}}",
+        "COL$L": "{{382858229__potential_ai_automation_opportunities}}",
+        "COL$M": "{{382858691__primary_pain_point}}",
+        "COL$N": "{{382858691__primary_pain_point_reason}}",
+        "COL$O": "{{382858783__total_score}}",
+        "COL$P": "{{382858783__qualification}}",
+        "COL$Q": "{{382858783__qualification_reason}}",
+        "COL$R": "{{382858862__opening_observation}}",
+        "COL$S": "{{382858970__subject}}",
+        "COL$T": "{{382858970__email_body}}",
+        "COL$U": "Pending",
+        "COL$V": "Not Sent",
+        "COL$W": "{{382969684__contact_email}}"
+      },
+      "meta": {
+        "$editor": {
+          "added_step_correlation_id": "538f8a40-686a-4f2a-8211-565a8ee49895",
+          "has_automatic_issues": true
+        },
+        "parammap": {
+          "spreadsheet": "AI SDR Lead Research",
+          "worksheet": "Sheet1"
+        }
+      },
+      "triple_stores": {
+        "copied_from": null,
+        "created_by": null,
+        "polling_interval_override": 0,
+        "block_and_release_limit_override": 0,
+        "spread_tasks": 1
+      },
+      "folders": null,
+      "parent_id": 382858970,
+      "root_id": 382858228,
+      "action": "add_row",
+      "selected_api": "GoogleSheetsV2CLIAPI@2.17.3",
+      "title": null,
+      "authentication_id": 66549452,
+      "created_at": "2026-10-08T13:14:59+00:00",
+      "last_changed": "2026-10-20T14:21:37+00:00"
+    },
+    "382969684": {
+      "id": 382969684,
+      "account_id": 28817829,
+      "customuser_id": 28984783,
+      "paused": true,
+      "type_of": "write",
+      "params": {
+        "authentication_id": "0",
+        "model_id": "standard/auto",
+        "provider_id": "",
+        "instructions": "You are a Contact Research Agent. Search only the provided company's official website, including Contact, About, Team, Leadership, Sales, Business Development pages. Prefer founder/CEO, sales leadership, business development, growth, or operations contacts. Use only publicly available information. Never guess emails or assume email patterns; if no public email is found, return null. Return only valid JSON with contact_name, contact_role, contact_email, contact_source_url.",
+        "inputFields": {
+          "company_url": "{{382858228__company_url}}",
+          "company_name": "{{382858229__company_name}}"
+        },
+        "outputFields": [
+          {
+            "key": "contact_name",
+            "label": "Contact Name",
+            "name": "contact_name"
+          },
+          {
+            "key": "contact_role",
+            "label": "Contact Role",
+            "name": "contact_role"
+          },
+          {
+            "key": "contact_email",
+            "label": "Contact Email",
+            "name": "contact_email"
+          },
+          {
+            "key": "contact_source_url",
+            "label": "Contact Source Url",
+            "name": "contact_source_url"
+          }
+        ],
+        "isOutputArray": false,
+        "includeWorkflowData": false
+      },
+      "meta": {
+        "$editor": {
+          "added_step_correlation_id": "3e848000-6062-4baa-8e23-0aa67deaf188",
+          "has_automatic_issues": false
+        },
+        "stepTitle": "Contact Research"
+      },
+      "triple_stores": {
+        "copied_from": null,
+        "created_by": null,
+        "polling_interval_override": 0,
+        "block_and_release_limit_override": 0,
+        "spread_tasks": 1
+      },
+      "folders": null,
+      "parent_id": 382858229,
+      "root_id": 382858228,
+      "action": "get_completion",
+      "selected_api": "AICLIAPI@4.0.31",
+      "title": "Contact Research",
+      "authentication_id": null,
+      "created_at": "2026-10-09T05:17:34+00:00",
+      "last_changed": "2026-10-14T20:12:58+00:00"
+    }
+  }
+}
