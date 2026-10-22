@@ -1,0 +1,101 @@
+{
+  "name": "AI SDR / Lead Research Agent",
+  "artifact_type": "workflow_documentation_template",
+  "importable": false,
+  "note": "This is a sanitized workflow outline, not an importable automation-platform export. The original export was not published because it contains account, user, workflow, authentication, and Google Sheets identifiers. Re-export from the automation platform after reviewing/redacting identifiers and reconnect credentials before use.",
+  "status_in_source_export": "off",
+  "nodes_paused_in_source_export": true,
+  "steps": [
+    {
+      "name": "AI SDR / Lead Research Agent",
+      "type": "webhook_trigger",
+      "purpose": "Accept the target company website URL as company_url."
+    },
+    {
+      "name": "Company Research",
+      "type": "ai_completion",
+      "purpose": "Build a structured company profile from public information; separate facts from observations."
+    },
+    {
+      "name": "Company Analysis",
+      "type": "ai_completion",
+      "purpose": "Identify business activities, possible operational problems, and potential AI/SaaS opportunities."
+    },
+    {
+      "name": "Problem Identification",
+      "type": "ai_completion",
+      "purpose": "Select a primary pain-point hypothesis and explain evidence and potential impact."
+    },
+    {
+      "name": "Lead Qualification",
+      "type": "ai_completion",
+      "purpose": "Score business relevance, problem relevance, potential business value, and AI/SaaS opportunity."
+    },
+    {
+      "name": "Personalization",
+      "type": "ai_completion",
+      "purpose": "Create a company-specific observation, value proposition, and low-friction call to action."
+    },
+    {
+      "name": "Email Generator",
+      "type": "ai_completion",
+      "purpose": "Draft a concise personalized email. Do not send it automatically."
+    },
+    {
+      "name": "Google Sheets",
+      "type": "google_sheets_add_row",
+      "purpose": "Store selected company research, qualification, draft, contact details, and review status. Reconfigure spreadsheet and credentials."
+    },
+    {
+      "name": "Contact Research",
+      "type": "ai_completion",
+      "purpose": "Find publicly listed business contact details; never guess email addresses and return null if unavailable."
+    }
+  ],
+  "lead_qualification": {
+    "maximum_score": 100,
+    "criteria": [
+      {
+        "name": "Business relevance",
+        "maximum_points": 25
+      },
+      {
+        "name": "Problem relevance",
+        "maximum_points": 25
+      },
+      {
+        "name": "Potential business value",
+        "maximum_points": 25
+      },
+      {
+        "name": "AI/SaaS opportunity",
+        "maximum_points": 25
+      }
+    ],
+    "bands": [
+      {
+        "minimum": 80,
+        "maximum": 100,
+        "label": "Strong Fit"
+      },
+      {
+        "minimum": 60,
+        "maximum": 79,
+        "label": "Moderate Fit"
+      },
+      {
+        "minimum": 0,
+        "maximum": 59,
+        "label": "Low Fit"
+      }
+    ]
+  },
+  "safety_requirements": [
+    "Do not invent company facts or present inferred pain points as confirmed facts.",
+    "Do not guess contact email addresses.",
+    "Keep email generation as draft-only.",
+    "Require human review before outreach.",
+    "Configure provider credentials and Google Sheets connection in the automation platform.",
+    "Test all steps and mappings before enabling the workflow."
+  ]
+}
