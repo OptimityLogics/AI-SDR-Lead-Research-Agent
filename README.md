@@ -1,62 +1,55 @@
 # AI SDR & Lead Research Agent
 
-An AI-powered B2B/SaaS sales research workflow that researches a company, identifies potential business opportunities, qualifies the lead, prepares a personalized outreach email draft, and records the research in Google Sheets.
+An AI-assisted B2B/SaaS lead research workflow that researches a company, identifies potential business opportunities, qualifies lead fit, prepares a personalized outreach email draft, researches publicly listed business contact details, and organizes the results for review.
 
 > **Project:** AI Real-World Use Case Lab  
 > **Domain:** B2B / SaaS  
-> **Workflow status:** Exported workflow is currently disabled/paused. Review configuration and test before running.
+> **Status:** The exported workflow is currently disabled. Configure and test it before use.
 
-## Business Problem
+## Overview
 
-Sales development teams can spend substantial time researching companies, identifying possible pain points, assessing prospect fit, finding public business contact details, and writing relevant outreach. This workflow aims to organize those activities into a repeatable AI-assisted process.
+Sales teams can spend significant time researching companies, understanding their business challenges, and preparing relevant outreach. This project organizes those tasks into a repeatable AI-assisted workflow.
 
-The system should treat company-specific facts separately from reasonable observations. It must not invent internal company information or guess email addresses.
+The workflow accepts a company website URL, creates a structured company profile, analyzes possible operational challenges, scores the potential fit, generates a personalized email draft, and records the research output in Google Sheets. Email generation is for drafting only; it does not mean that an email is sent.
 
-## Goals
+Company facts should be distinguished from hypotheses. The workflow must not invent internal company information or guess email addresses.
 
-- Research a company from its website URL.
-- Create a structured company profile.
-- Analyze business activities and potential AI/SaaS opportunities.
-- Identify and prioritize a potential business pain point.
-- Score lead fit using a transparent 100-point model.
-- Develop a company-specific personalization strategy.
-- Generate an email **draft only**.
-- Search for publicly listed business contact information without guessing.
-- Save lead research and draft details to Google Sheets.
-- Keep outreach subject to human review and approval.
+## Workflow demonstration
 
-## Workflow Overview
+This repository currently documents the workflow export. Add a demo video or screenshots here when they are available.
 
-```mermaid
-flowchart TD
-    A[Company URL via Webhook] --> B[Company Research]
-    B --> C[Company Analysis]
-    C --> D[Problem Identification]
-    D --> E[Lead Qualification]
-    E --> F[Personalization]
-    F --> G[Email Draft Generation]
-    B --> H[Contact Research]
-    G --> I[Google Sheets Lead Record]
-    H --> I
-    I --> J[Human Review / Approval]
-    J --> K[Manual outreach after approval]
-```
+## Technology and integrations
 
-The diagram summarizes the intended process. Confirm the exact connections and field mappings in the workflow platform before relying on it.
+| Component | Purpose |
+|---|---|
+| Webhook trigger | Receives the company website URL |
+| AI/model completion steps | Research, analyze, qualify, personalize, and draft outreach |
+| Contact research step | Looks for publicly listed business contact information |
+| Google Sheets | Stores research, qualification, contact details, and email drafts |
+| Human review | Checks accuracy and approves any outreach before it is sent |
 
-## Workflow Stages
+The exact provider, credentials, and integration settings must be reviewed in the workflow platform.
 
-1. **Webhook input** — accepts the company website URL (`company_url`).
-2. **Company Research** — gathers public company information and returns structured JSON such as industry, products/services, target customers, business model, operations, potential challenges, and AI/automation opportunities.
-3. **Company Analysis** — analyzes business activities, repetitive processes, possible problems, and potential value opportunities.
-4. **Problem Identification** — describes candidate pain points, supporting evidence, business impact, and confidence; selects one primary pain point.
-5. **Lead Qualification** — scores business relevance, problem relevance, potential business value, and AI/SaaS opportunity (25 points each; 100 points total).
-6. **Personalization** — creates a company-specific opening observation, problem hypothesis, solution connection, value proposition, reason for contact, and one low-friction call to action.
-7. **Email Generator** — prepares a concise email subject and body. The prompt explicitly says not to send the email.
-8. **Contact Research** — checks the company's public website for relevant business contact information. It must not guess email addresses; unknown information should be returned as `null`.
-9. **Google Sheets** — adds a row containing company, research, qualification, personalization, email draft, approval/sending status, and contact details.
+## Repository contents
 
-## Lead Qualification Scoring
+- `workflow/leadresearchagent.json` — workflow export for inspection and configuration.
+- `README.md` — project overview, setup guidance, and limitations.
+
+## Workflow stages
+
+1. **Webhook input** — receives a company website URL through the `company_url` field.
+2. **Company research** — gathers public information such as industry, products/services, target customers, business model, operations, and potential AI/automation opportunities.
+3. **Company analysis** — reviews business activities and identifies possible repetitive processes or areas where automation may provide value.
+4. **Problem identification** — identifies a potential business pain point and explains the evidence or observations behind it.
+5. **Lead qualification** — scores the prospect across four criteria using a 100-point model.
+6. **Personalization** — develops a company-specific opening, problem hypothesis, value proposition, and low-friction call to action.
+7. **Email drafting** — creates a subject and email body for human review. The workflow instructions specify that the email must not be sent automatically.
+8. **Contact research** — checks public company sources for business contact details. It should return unknown information as `null`, rather than guessing.
+9. **Google Sheets record** — stores the research and draft details for review.
+
+Confirm the exact node connections and field mappings in the exported workflow and your automation platform before relying on this sequence.
+
+## Lead qualification
 
 | Criterion | Maximum points |
 |---|---:|
@@ -66,68 +59,78 @@ The diagram summarizes the intended process. Confirm the exact connections and f
 | AI/SaaS opportunity | 25 |
 | **Total** | **100** |
 
-Qualification bands in the workflow:
+Qualification bands:
+
 - **80–100:** Strong Fit
 - **60–79:** Moderate Fit
 - **0–59:** Low Fit
 
-Scores should be evidence-based and should not be inflated to make a prospect appear more suitable.
+Scores should reflect available evidence and should not be inflated to make a prospect appear more suitable.
 
-## Technology and Integrations
+## Requirements
 
-Based on the supplied workflow export:
-- Webhook trigger for the company URL
-- AI completion steps for research, analysis, pain-point identification, qualification, personalization, email drafting, and contact research
-- Google Sheets integration for lead storage
+- Access to the automation platform that supports this workflow export.
+- Credentials and access for the configured AI/model provider.
+- A Google account and spreadsheet for storing lead research.
+- A webhook endpoint that can receive a company URL.
+- Public company websites or other permitted sources for research.
 
-The export does not establish that the workflow is currently operational. Review provider/model settings, credentials, field mappings, and connections in the workflow platform.
+The export alone does not provide hosted services, credentials, or a ready-to-use live integration.
 
-## Repository Structure
+## Setup
 
-```text
-ai-sdr-lead-research-agent/
-├── README.md
-├── workflow/
-│   └── ai_sdr_lead_research_agent.json
-└── docs/
-    └── workflow-documentation.md
-```
+1. Review `workflow/leadresearchagent.json` and confirm which automation platform and integrations the export targets.
+2. Import the file only into a compatible platform or use the platform's supported workflow-import process.
+3. Configure your own AI/model provider and Google Sheets credentials.
+4. Verify the webhook input field is `company_url`.
+5. Confirm the spreadsheet destination, worksheet, columns, and output field mappings.
+6. Run tests with company websites that have publicly available information.
+7. Inspect each step's output and verify that the final spreadsheet record is complete and accurate.
+8. Keep the workflow disabled until configuration and testing are complete.
+9. Require a human to review the qualification, contact details, and email draft before any outreach.
 
-## Setup and Use
+**Important:** This repository's JSON is a workflow export, not a conventional website application. Do not assume it can be imported directly into n8n unless the export format and nodes are confirmed to be compatible.
 
-1. Import `workflow/ai_sdr_lead_research_agent.json` into a compatible automation platform.
-2. Configure the required AI/model provider and Google Sheets connection.
-3. Verify the target spreadsheet and worksheet, including the expected column mapping.
-4. Confirm that the webhook expects `company_url`.
-5. Test using a company website with public information.
-6. Check the structured output at each AI step and confirm downstream field mappings.
-7. Review the final Google Sheets row for completeness and correctness.
-8. Keep the workflow disabled until configuration and tests are satisfactory.
-9. Require a human to review the lead and email draft before any outreach is sent.
+## Security and configuration
 
-Do not commit API keys, OAuth tokens, passwords, or other credentials. Before publishing publicly, review the exported JSON for account-specific identifiers and spreadsheet IDs, and replace or remove sensitive configuration where appropriate. Re-import and test any edited export because redaction can affect compatibility.
+- Add credentials in your own automation platform; never commit API keys, OAuth tokens, passwords, or webhook secrets.
+- Review the export for account-specific identifiers, spreadsheet IDs, and other environment-specific metadata before publishing or sharing it.
+- Restrict access to the workflow and connected spreadsheets to authorized users.
+- Use test data first and avoid storing unnecessary personal information.
+- Re-test the workflow after editing or redacting configuration, as changes may affect compatibility.
 
-## Testing Checklist
+## Example use case
 
-- [ ] Valid company website produces a structured company profile.
-- [ ] Limited or unavailable website results in missing evidence being acknowledged, not invented.
-- [ ] No public contact email results in `null`; no email is guessed.
-- [ ] Weak prospect fit receives a reasoned score.
-- [ ] Invalid or incomplete URL is handled clearly.
-- [ ] Google Sheets write failures are surfaced.
-- [ ] Email remains a draft until a human approves it.
+**Input:** A company website URL.
 
-These are proposed tests; do not mark them passed until they have actually been run.
+**Expected workflow:** The system researches the company, analyzes potential business challenges, scores its fit for an AI/SaaS solution, prepares a personalized email draft, searches for public business contact details, and records the output for human review.
 
-## Limitations and Safety
+Results depend on the information available on the company's website, model configuration, credentials, and downstream field mappings. Potential pain points are hypotheses unless supported by evidence.
 
-- Public website research may be incomplete or outdated.
-- Potential pain points and AI opportunities are hypotheses unless supported by evidence.
-- AI-generated summaries, scores, and drafts require human review.
-- Email generation is not email sending; outreach must remain behind human approval.
-- The supplied export is disabled/paused and contains steps flagged with automatic issues. Resolve these and test the end-to-end flow before presenting it as operational.
-- Use public business information responsibly and comply with applicable privacy, anti-spam, and website terms.
+## Testing checklist
+
+- [ ] A valid company URL produces a structured company profile.
+- [ ] Missing information is identified rather than invented.
+- [ ] The qualification score and rationale are consistent with the available evidence.
+- [ ] Unknown contact details are left unknown; email addresses are not guessed.
+- [ ] The email remains a draft and is not sent automatically.
+- [ ] Google Sheets receives the expected fields.
+- [ ] Errors or missing credentials are resolved before activation.
+
+These are recommended checks; do not consider them passed until they have been run in a configured environment.
+
+## Limitations
+
+- Public website information may be incomplete or outdated.
+- AI-generated analyses and pain-point hypotheses may be incorrect and require human review.
+- The workflow export does not confirm that live integrations are configured or operational.
+- The export is currently disabled; resolve configuration issues and test the end-to-end process before use.
+- This repository does not provide an automated deployment pipeline or execute the workflow in a live environment.
 
 ## License
 
-No license has been specified. Add a license only after deciding the terms under which this project may be reused.
+No license is currently specified. Contact the repository owner before reusing this project beyond personal evaluation or learning.
+
+---
+
+**Built by [Optimity Logics](https://optimitylogics.com).**
