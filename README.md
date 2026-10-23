@@ -2,8 +2,6 @@
 
 An AI-assisted sales development workflow built with **Zapier** to research B2B companies, identify potential business opportunities, qualify prospects, find publicly listed business contacts, and prepare personalized cold-email drafts for human review.
 
-> **Workflow status:** Disabled in the provided export. Configure and test your own integrations before enabling it.
->
 > **Important:** This project generates research and email drafts. It does not send emails automatically.
 
 ## Table of Contents
@@ -111,9 +109,8 @@ AI-SDR-Lead-Research-Agent/
 6. **Validate field mappings.** Ensure each AI step receives the previous step's expected outputs, including company research, analysis, primary pain point, qualification, and personalization.
 7. **Review contact research.** Confirm it uses public information from the company's official website and returns `null` when a contact detail cannot be verified.
 8. **Test with a sample company.** Inspect every step's input and output, and verify that the Google Sheets row contains the expected values.
-9. **Keep the workflow disabled during testing.** Enable it only after resolving configuration errors and confirming the complete flow works as intended.
+9. **Validate before use.** Resolve configuration errors and confirm the complete flow works as intended before relying on it.
 
-The supplied export reports the workflow status as `off` and its nodes as paused. Treat it as a configuration artifact, not as proof of a live, operational automation.
 
 ## Input and Outputs
 
@@ -170,7 +167,6 @@ These are recommended checks; they should only be marked complete after testing 
 - A potential pain point or automation opportunity is not proof of an actual internal company problem.
 - Contact research is limited to information the workflow can access and verify on the official company website.
 - The JSON export does not include your live credentials and does not prove that all integrations are connected or functioning.
-- The exported workflow is disabled; successful end-to-end operation must be verified in Zapier.
 
 ## License
 
